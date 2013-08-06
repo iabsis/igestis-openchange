@@ -1,0 +1,15 @@
+Source: igestis-openchange
+Section: web
+Priority: extra
+Maintainer: Olivier Bitsch <olivier.b@iabsis.com>
+Build-Depends: debhelper (>= 5), po-debconf
+Standards-Version: 3.7.2
+
+Package: igestis-openchange
+Architecture: all
+Depends: igestis (>= 2.3)
+Description: OpenChange extension for iGestis
+ This module add the support for OpenChange extension.
+ When a new employee is created in iGestis, the module
+ automatically add OpenChange attribute allow the user to use
+ OpenChange mail.
