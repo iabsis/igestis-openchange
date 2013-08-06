@@ -5,10 +5,10 @@
  *
  * @author Gilles Hemmerlé
  */
-namespace Igestis\Modules\Samba;
+namespace Igestis\Modules\OpenChange;
 
 /**
- * Hook listener for the Samba module
+ * Hook listener for the OpenChange module
  */
 class ConfigHookListener implements \Igestis\Interfaces\HookListenerInterface  {
     /**

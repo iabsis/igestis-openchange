@@ -1,9 +1,9 @@
 <?php
 
-namespace Igestis\Modules\Samba;
+namespace Igestis\Modules\OpenChange;
 
 /**
- * Thie class is designed to update all samba fields in the ldap database
+ * Thie class is designed to update all OpenChange fields in the ldap database
  *
  * @author Gilles Hemmerlé
  */
@@ -18,7 +18,7 @@ class OpenChangeLdapUpdate {
     private $contact;
 
     /**
-     * Constructor will update all datas in ldap to integrate the employee in the ldap samba environment
+     * Constructor will update all datas in ldap to integrate the employee in the ldap OpenChange environment
      * @param \CoreContacts $contact
      */
     public function __construct(\CoreContacts $contact) {
