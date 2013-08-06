@@ -1,2 +1,2 @@
-config		    usr/share/igestis/modules/Samba/
-classes         usr/share/igestis/modules/Samba/
+config		    usr/share/igestis/modules/OpenChange/
+classes         usr/share/igestis/modules/OpenChange/
