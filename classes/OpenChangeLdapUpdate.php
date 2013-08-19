@@ -32,19 +32,27 @@ class OpenChangeLdapUpdate {
 
         try {
             // Connect the ldap database
-            $ldap = new \LDAP(\ConfigIgestisGlobalVars::LDAP_URIS, \ConfigIgestisGlobalVars::LDAP_BASE);
-            $ldap->bind(\ConfigIgestisGlobalVars::LDAP_ADMIN, \ConfigIgestisGlobalVars::LDAP_PASSWORD);
+        	$ldap = new \LDAP(\ConfigIgestisGlobalVars::LDAP_URIS, \ConfigIgestisGlobalVars::LDAP_BASE);
+         
+        	if(\ConfigIgestisGlobalVars::LDAP_CUSTOM_BIND) {
+        		$ldap->bind(str_replace("%u", \ConfigIgestisGlobalVars::LDAP_ADMIN, \ConfigIgestisGlobalVars::LDAP_CUSTOM_BIND), \ConfigIgestisGlobalVars::LDAP_PASSWORD);
+        	}
+        	else {
+        		$ldap->bind(\ConfigIgestisGlobalVars::LDAP_ADMIN, \ConfigIgestisGlobalVars::LDAP_PASSWORD);
+        	};
 
             // Search the person
             $nodesList = $ldap->find("(cn=" . $this->contact->getLogin() . ")");      
             
-            // If noone found, quit this script, the person should be created from the main script, if not, we cannot update it...
+            
+            // If none found, quit this script, the person should be created from the main script, if not, we cannot update it...
             if(!$nodesList) return;
 
-
-             // Global datas
+            
+            
+            // Global datas
             $ldapArray = array(
-                "displayname" => $this->contact->getLogin(),                
+                "displayname" => $this->contact->getLogin(),
                 "homemdb" => "CN=Mailbox Store (" . ConfigModuleVars::serverName . "),CN=First Storage Group,CN=InformationStore,CN=" . ConfigModuleVars::serverName . ",CN=Servers,CN=First Administrative Group,CN=Administrative Groups,CN=First Organization,CN=Microsoft Exchange,CN=Services,CN=Configuration," . \ConfigIgestisGlobalVars::LDAP_BASE,
             	"homemta" => "CN=Mailbox Store (" . ConfigModuleVars::serverName . "),CN=First Storage Group,CN=InformationStore,CN=" . ConfigModuleVars::serverName . ",CN=Servers,CN=First Administrative Group,CN=Administrative Groups,CN=First Organization,CN=Microsoft Exchange,CN=Services,CN=Configuration," . \ConfigIgestisGlobalVars::LDAP_BASE,
             	"legacyexchangedn" => "/o=First Organization/ou=First Administrative Group/cn=Recipients/cn=" . $this->contact->getLogin(),
@@ -58,14 +66,37 @@ class OpenChangeLdapUpdate {
             			)
             		
               );
+
+            $node = $nodesList->getFirstNode();
             
+            /*
+            var_dump($node);
+            exit;
+            foreach ($attrs as $attribute) {
+            	echo($attribute);
+            }
             
+            exit;
+            foreach ($nodesList as $node) {
+            	var_dump($node);
+            	exit;
+            	$node->modify($nodesList, $ldapArray);
+            }
+            */
+            $node->modify($ldapArray);
+
+            
+            /*
             // Launch the update in the ldap database
             foreach ($nodesList as $node) {
                 $node->modify($ldap->mergeArrays($nodesList, $ldapArray));
             }
+            */
+            
+
+            
         } catch (Exception $exc) {
-            new \wizz(_("Problem during the opencahnge ldap update") . (\ConfigIgestisGlobalVars::DEBUG_MODE ? "<br />" . $exc->getTraceAsString() : ""), \wizz::$WIZZ_WARNING);
+            new \wizz(_("Problem during the openchange ldap update") . (\ConfigIgestisGlobalVars::DEBUG_MODE ? "<br />" . $exc->getTraceAsString() : ""), \wizz::$WIZZ_WARNING);
         }
     }    
     
