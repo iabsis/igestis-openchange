@@ -24,7 +24,7 @@ class OpenChangeLdapUpdate {
     public function __construct(\CoreContacts $contact) {
         
         // If the ldap synchronization is not activated, quit the script
-        if(\ConfigIgestisGlobalVars::USE_LDAP != true) return;
+        if(\ConfigIgestisGlobalVars::useLdap() != true) return;
         
         $this->contact = $contact;
         if ($this->contact->getUser()->getUserType() != "employee")
@@ -32,10 +32,10 @@ class OpenChangeLdapUpdate {
 
         try {
             // Connect the ldap database
-        	$ldap = new \LDAP(\ConfigIgestisGlobalVars::LDAP_URIS, \ConfigIgestisGlobalVars::LDAP_BASE);
+        	$ldap = new \LDAP(\ConfigIgestisGlobalVars::ldapUris(), \ConfigIgestisGlobalVars::ldapBase());
          
-        	if(\ConfigIgestisGlobalVars::LDAP_CUSTOM_BIND) {
-        		$ldap->bind(str_replace("%u", \ConfigIgestisGlobalVars::LDAP_ADMIN, \ConfigIgestisGlobalVars::LDAP_CUSTOM_BIND), \ConfigIgestisGlobalVars::LDAP_PASSWORD);
+        	if(\ConfigIgestisGlobalVars::ldapCustomBind()) {
+        		$ldap->bind(str_replace("%u", \ConfigIgestisGlobalVars::ldapAdmin(), \ConfigIgestisGlobalVars::ldapCustomBind()), \ConfigIgestisGlobalVars::ldapPassword());
         	}
         	else {
         		$ldap->bind(\ConfigIgestisGlobalVars::LDAP_ADMIN, \ConfigIgestisGlobalVars::LDAP_PASSWORD);
