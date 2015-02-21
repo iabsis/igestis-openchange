@@ -1,3 +1,9 @@
+igestis-openchange (3.0.0) wheezy; urgency=medium
+
+  * Fix variables for iGestis 3.0.0
+
+ -- Olivier Bitsch <olivierb@olivier-tanglu>  Sat, 21 Feb 2015 10:46:02 +0100
+
 igestis-openchange (2.0.0) wheezy; urgency=low
 
   * Initial release version 2.0.0.

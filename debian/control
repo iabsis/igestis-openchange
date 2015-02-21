@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: igestis-openchange
 Architecture: all
-Depends: igestis (>= 2.3)
+Depends: igestis (>= 3.0.0), igestis (<= 4.0.0)
 Description: OpenChange extension for iGestis
  This module add the support for OpenChange extension.
  When a new employee is created in iGestis, the module
