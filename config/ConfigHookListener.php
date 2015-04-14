@@ -24,12 +24,6 @@ class ConfigHookListener implements \Igestis\Interfaces\HookListenerInterface  {
                 new OpenChangeLdapUpdate($params->get("contact"));
                 return true;
                 break;
-            // Default, do nothing
-            case "command" :
-                $application = $params->get("application");
-                $application->add(new OpenChangeCommand);
-                return true;
-                break;
             default:
                 break;
         }

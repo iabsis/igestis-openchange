@@ -1,10 +1,16 @@
-igestis-openchange (3.0.0) wheezy; urgency=medium
+igestis-openchange (3.0.1) testing; urgency=medium
+
+  * Fix missing command issue.
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 14 Apr 2015 09:07:51 +0200
+
+igestis-openchange (3.0.0) testing; urgency=medium
 
   * Fix variables for iGestis 3.0.0
 
  -- Olivier Bitsch <olivier.b@iabsis.com>  Sat, 21 Feb 2015 10:46:02 +0100
 
-igestis-openchange (2.0.0) wheezy; urgency=low
+igestis-openchange (2.0.0) stable; urgency=low
 
   * Initial release version 2.0.0.
 
